@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h2 style="color:aliceblue;">Calcula tu horoscopo chinillo</h2>
+    <div style="display: flex; gap: 40px; padding: 20px;">
+
+  <div style="background-color: aquamarine; border: 1px solid black; padding: 15px; width: 320px;">
+    <h3>Datos Personales</h3>
+
+    <label>Nombre: </label>
+    <input type="text" [(ngModel)]="nombre" placeholder="Nombre"><br><br>
+
+    <label>A. Paterno: </label>
+    <input type="text" [(ngModel)]="apaterno" placeholder="Apaterno"><br><br>
+
+    <label>A. Materno: </label>
+    <input type="text" [(ngModel)]="amaterno" placeholder="Amaterno"><br><br>
+
+    <p><strong>Fecha de nacimiento</strong></p>
+    <label>Día: </label>
+    <input type="number" [(ngModel)]="dia" placeholder="Día" style="width: 50px;">
+    
+    <label>Mes: </label>
+    <input type="number" [(ngModel)]="mes" placeholder="Mes" style="width: 50px;">
+    
+    <label>Año: </label>
+    <input type="number" [(ngModel)]="anio" placeholder="Año" style="width: 60px;"><br><br>
+
+    <p><strong>Sexo</strong></p>
+    <input type="radio" name="sexo" value="Masculino" [(ngModel)]="sexo"> Masculino <br>
+    <input type="radio" name="sexo" value="Femenino" [(ngModel)]="sexo"> Femenino <br><br>
+
+    <button (click)="calcular()">Calcular</button>
+  </div>
+
+ 
+  @if (mostrarResultado) {
+    <div>
+      <h2>Hola {{ nombreCompleto }}</h2>
+      <h3>Tienes {{ edad }} años</h3>
+      <p>tu signo zodiacal</p>
+      
+      <p>Es {{ signo }}</p>
+      <img [src]="imagenSigno" [alt]="signo" width="100">
+    </div>
+  }
+
+</div>
+</body>
+</html>
