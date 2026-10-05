@@ -9,7 +9,8 @@ export class FlowbiteService {
 
   loadFlowbite(callback: (flowbite: any) => void) {
     if (isPlatformBrowser(this.platformId)) {
-      import('flowbite').then(flowbite => {        callback(flowbite);
+      import('flowbite').then(flowbite => {
+        callback(flowbite);
       });
     }
   }

@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Zodiaco } from './formularios/zodiaco/zodiaco';
-import { FlowbiteService } from './services/flowbite.service';
+import { FlowbiteService } from './services/flowbite';
+import { Navbar } from './formularios/navbar/navbar';
+import { Usuarios } from './formularios/usuarios/usuarios';
 
 @Component({
-  imports: [RouterOutlet, Zodiaco],
+  imports: [RouterOutlet, Navbar, Usuarios],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit {
   title = 'segundoparcialAngular';
-
-  constructor(private flowbiteService: FlowbiteService) {}
+  private flowbiteService = inject(FlowbiteService);
 
   ngOnInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {
