@@ -2,10 +2,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './services/flowbite';
 import { Navbar } from './formularios/navbar/navbar';
-import { Usuarios } from './formularios/usuarios/usuarios';
+//import { Usuarios } from './formularios/usuarios/usuarios';
 
 @Component({
-  imports: [RouterOutlet, Navbar, Usuarios],
+  imports: [RouterOutlet, Navbar],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css'

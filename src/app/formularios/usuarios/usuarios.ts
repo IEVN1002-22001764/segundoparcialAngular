@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-usuarios',
-//  standalone: true,
   imports: [],
+  selector: 'app-usuarios',
   templateUrl: './usuarios.html',
 })
 export class Usuarios { }

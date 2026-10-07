@@ -1,55 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   <h2 style="color:aliceblue;">Calcula tu horoscopo chinillo</h2>
-    <div style="display: flex; gap: 40px; padding: 20px;">
+<h2 class="text-2xl font-bold mb-4 text-white">Calcula tu horóscopo chino</h2>
 
-  <div style="background-color: aquamarine; border: 1px solid black; padding: 15px; width: 320px;">
-    <h3>Datos Personales</h3>
+<div class="flex flex-col md:flex-row gap-8 p-4">
+  <div class="bg-emerald-200 border border-black p-4 rounded-lg w-full md:w-80 text-black">
+    <h3 class="text-lg font-bold mb-3">Datos Personales</h3>
 
-    <label>Nombre: </label>
-    <input type="text" [(ngModel)]="nombre" placeholder="Nombre"><br><br>
+    <label class="block text-sm font-medium">Nombre: </label>
+    <input type="text" [(ngModel)]="nombre" placeholder="Nombre" class="w-full p-1 mb-2 border rounded"><br>
 
-    <label>A. Paterno: </label>
-    <input type="text" [(ngModel)]="apaterno" placeholder="Apaterno"><br><br>
+    <label class="block text-sm font-medium">A. Paterno: </label>
+    <input type="text" [(ngModel)]="apaterno" placeholder="Apaterno" class="w-full p-1 mb-2 border rounded"><br>
 
-    <label>A. Materno: </label>
-    <input type="text" [(ngModel)]="amaterno" placeholder="Amaterno"><br><br>
+    <label class="block text-sm font-medium">A. Materno: </label>
+    <input type="text" [(ngModel)]="amaterno" placeholder="Amaterno" class="w-full p-1 mb-2 border rounded"><br>
 
-    <p><strong>Fecha de nacimiento</strong></p>
-    <label>Día: </label>
-    <input type="number" [(ngModel)]="dia" placeholder="Día" style="width: 50px;">
-    
-    <label>Mes: </label>
-    <input type="number" [(ngModel)]="mes" placeholder="Mes" style="width: 50px;">
-    
-    <label>Año: </label>
-    <input type="number" [(ngModel)]="anio" placeholder="Año" style="width: 60px;"><br><br>
+    <p class="font-bold mt-2">Fecha de nacimiento</p>
+    <div class="flex gap-2 my-2">
+      <input type="number" [(ngModel)]="dia" placeholder="Día" class="w-16 p-1 border rounded">
+      <input type="number" [(ngModel)]="mes" placeholder="Mes" class="w-16 p-1 border rounded">
+      <input type="number" [(ngModel)]="anio" placeholder="Año" class="w-20 p-1 border rounded">
+    </div>
 
-    <p><strong>Sexo</strong></p>
-    <input type="radio" name="sexo" value="Masculino" [(ngModel)]="sexo"> Masculino <br>
-    <input type="radio" name="sexo" value="Femenino" [(ngModel)]="sexo"> Femenino <br><br>
+    <p class="font-bold my-2">Sexo</p>
+    <label class="inline-flex items-center gap-1 mr-4">
+      <input type="radio" name="sexo" value="Masculino" [(ngModel)]="sexo"> Masculino
+    </label>
+    <label class="inline-flex items-center gap-1">
+      <input type="radio" name="sexo" value="Femenino" [(ngModel)]="sexo"> Femenino
+    </label><br><br>
 
-    <button (click)="calcular()">Calcular</button>
+    <button (click)="calcular()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">Calcular</button>
   </div>
 
- 
   @if (mostrarResultado) {
-    <div>
-      <h2>Hola {{ nombreCompleto }}</h2>
-      <h3>Tienes {{ edad }} años</h3>
-      <p>tu signo zodiacal</p>
-      
-      <p>Es {{ signo }}</p>
-      <img [src]="imagenSigno" [alt]="signo" width="100">
+    <div class="bg-white p-6 rounded-lg shadow dark:bg-gray-800 dark:text-white">
+      <h2 class="text-xl font-bold">Hola {{ nombreCompleto }}</h2>
+      <h3 class="text-lg">Tienes {{ edad }} años</h3>
+      <p class="mt-2">Tu signo zodiacal chino es: <strong>{{ signo }}</strong></p>
+      <img [src]="imagenSigno" [alt]="signo" class="w-24 h-24 mt-4 object-contain">
     </div>
   }
-
 </div>
-</body>
-</html>
