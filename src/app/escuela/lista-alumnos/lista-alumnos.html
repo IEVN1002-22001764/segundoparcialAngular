@@ -1,17 +1,23 @@
 <div>
-    <form [FormGroup]="formulario"
+    <form [formGroup]="formulario">
     <label class="block text-sm font-medium">Nombre: </label>
-    <input type="text"  FormControlName="nombre" placeholder="Nombre"><br>
+    <input type="text"  formControlName="nombre" placeholder="Nombre"><br>
 
      <label class="block text-sm font-medium">Matricula: </label>
-    <input type="text"  FormControlName="matricula" placeholder="Matricula"><br>
+    <input type="text"  formControlName="matricula" placeholder="Matricula"><br>
 
      <label class="block text-sm font-medium">Correo: </label>
-    <input type="text" FormControlName="correo" placeholder="Correo"><br>
+    <input type="text" formControlName="correo" placeholder="Correo"><br>
 
      <label class="block text-sm font-medium">Materia: </label>
-    <input type="text" FormControlName="materia" placeholder="Materia"><br>
+    <input type="text" formControlName="materia" placeholder="Materia"><br>
 
-    <button type="button">Hacer clic</button>
+    <button type="submit" (click)="muestraAlumnos">Registrar</button>
     </form>
+
+    <h1>Lista alumno</h1>
+    <h2>Matricula: {{nuevoAlumno.matricula}}</h2>
+    <h2>Nombre: {{nuevoAlumno.nombre}}</h2>
+    <h2>Correo: {{nuevoAlumno.correo}}</h2>
+    <h2>Materia: {{nuevoAlumno.materia}}</h2>
 </div>
