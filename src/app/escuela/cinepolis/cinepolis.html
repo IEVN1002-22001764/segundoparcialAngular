@@ -1,0 +1,131 @@
+<div
+  class="min-h-screen bg-blue-900 text-white p-6 flex flex-col items-center justify-center"
+>
+  <h1
+    class="text-3xl font-bold bg-white text-blue-900 px-8 py-1 rounded shadow mb-6"
+  >
+    Cinépolis
+  </h1>
+  <form [formGroup]="formulario" class="w-full max-w-4xl space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="border-2 border-white p-6 rounded-lg relative">
+        <span class="absolute -top-3 left-4 bg-blue-900 px-2 font-bold text-lg"
+          >Entradas</span
+        >
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <label class="font-semibold">Nombre:</label>
+            <input
+              type="text"
+              formControlName="nombre"
+              class="w-48 p-1 text-black rounded border border-gray-300 focus:outline-none"
+            />
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="font-semibold">Cantidad Compradores:</label>
+            <input
+              type="number"
+              formControlName="compradores"
+              min="1"
+              class="w-48 p-1 text-black rounded border border-gray-300 focus:outline-none"
+            />
+          </div>
+   
+          <div class="flex items-center justify-between">
+            <label class="font-semibold">Tarjeta CINECO:</label>
+            <div class="w-48 flex items-center space-x-4">
+              <label class="inline-flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  formControlName="tarjeta"
+                  value="si"
+                  class="form-radio"
+                />
+                <span class="ml-1">Sí</span>
+              </label>
+
+              <label class="inline-flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  formControlName="tarjeta"
+                  value="no"
+                  class="form-radio"
+                />
+                <span class="ml-1">No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="font-semibold">Cantidad De Boletos:</label>
+            <input
+              type="number"
+              formControlName="boletos"
+              min="1"
+              class="w-48 p-1 text-black rounded border border-gray-300 focus:outline-none"
+            />
+          </div>
+        </div>
+      </div>
+    
+      <div
+        class="border-2 border-white p-6 rounded-lg relative flex flex-col justify-between"
+      >
+        <span class="absolute -top-3 left-4 bg-blue-900 px-2 font-bold text-lg"
+          >Salidas</span
+        >
+        <div class="space-y-4 my-auto">
+     
+          <div class="flex items-center justify-between">
+            <label class="font-semibold text-lg">Valor a Pagar:</label>
+            <input
+              type="text"
+              [value]="total_a_pagar"
+              readonly
+              class="w-48 p-1 text-black bg-gray-200 font-bold rounded border border-gray-300 text-center"
+            />
+          </div>
+       
+
+          @if (mensajeDeError) {
+          <p class="text-green-600 text-sm font-bold text-center mt-4">
+            {{ mensajeDeError }}
+          </p>
+
+          }
+        </div>
+       
+        <div class="flex justify-center mt-4">
+          <img
+            src="assets/cinepolisss.jpeg"
+            alt="Cinépolis"
+            class="max-h-28 object-contain drop-shadow-md"
+          />
+        </div>
+      </div>
+    </div>
+   
+    <div
+      class="w-full border-2 border-white p-4 rounded-lg relative flex justify-center space-x-6"
+    >
+      <span class="absolute -top-3 left-4 bg-blue-900 px-2 font-bold text-lg"
+        >Acciones</span
+      >
+      <button
+        type="button"
+        (click)="procesar()"
+        class="bg-white text-blue-900 font-bold px-6 py-2 rounded shadow hover:bg-gray-200 transition"
+      >
+        Procesar
+      </button>
+      <button
+        type="button"
+        (click)="salir()"
+        class="bg-white text-blue-900 font-bold px-6 py-2 rounded shadow hover:bg-gray-200 transition"
+      >
+        Salir
+      </button>
+    </div>
+  </form>
+</div>
