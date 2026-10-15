@@ -1,0 +1,58 @@
+<div class="min-h-screen bg-blue-900 text-white p-6 flex flex-col items-center">
+  <h1 class="text-3xl font-bold bg-white text-blue-900 px-8 py-1 rounded shadow mb-6">
+    Ver Registros de Cinépolis
+  </h1>
+
+  <div class="w-full max-w-4xl bg-blue-950 p-6 rounded-xl border-2 border-white">
+    @if (registros.length === 0) {
+      <p class="text-center text-gray-300">No hay registros almacenados.</p>
+    } @else {
+      <table class="w-full text-left text-sm text-white">
+        <thead>
+          <tr class="border-b border-gray-500 bg-blue-900">
+            <th class="p-2">Nombre</th>
+            <th class="p-2">Compradores</th>
+            <th class="p-2">Boletos</th>
+            <th class="p-2">Tarjeta</th>
+            <th class="p-2">Total</th>
+            <th class="p-2 text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of registros; track $index) {
+            <tr class="border-b border-gray-800">
+              @if (editandoIndex === $index) {
+                <!-- Modo Edición -->
+                <td class="p-2"><input [(ngModel)]="clienteEditado.nombre" class="text-black p-1 rounded w-full" /></td>
+                <td class="p-2"><input type="number" [(ngModel)]="clienteEditado.compradores" class="text-black p-1 rounded w-16" /></td>
+                <td class="p-2"><input type="number" [(ngModel)]="clienteEditado.boletos" class="text-black p-1 rounded w-16" /></td>
+                <td class="p-2">
+                  <select [(ngModel)]="clienteEditado.tarjeta" class="text-black p-1 rounded">
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                  </select>
+                </td>
+                <td class="p-2">-</td>
+                <td class="p-2 text-center space-x-1">
+                  <button (click)="guardarEdicion()" class="bg-green-600 px-2 py-1 rounded text-xs font-bold">Guardar</button>
+                  <button (click)="cancelar()" class="bg-gray-600 px-2 py-1 rounded text-xs font-bold">Cancelar</button>
+                </td>
+              } @else {
+                <!-- Modo Normal -->
+                <td class="p-2">{{ item.nombre }}</td>
+                <td class="p-2">{{ item.compradores }}</td>
+                <td class="p-2">{{ item.boletos }}</td>
+                <td class="p-2">{{ item.tarjeta }}</td>
+                <td class="p-2">${{ item.totalPagar }}</td>
+                <td class="p-2 text-center space-x-2">
+                  <button (click)="iniciarEdicion($index)" class="bg-yellow-500 text-black px-2 py-1 rounded text-xs font-bold">Modificar</button>
+                  <button (click)="eliminar($index)" class="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">Eliminar</button>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>

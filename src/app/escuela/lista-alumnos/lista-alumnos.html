@@ -1,23 +1,132 @@
-<div>
-    <form [formGroup]="formulario">
-    <label class="block text-sm font-medium">Nombre: </label>
-    <input type="text"  formControlName="nombre" placeholder="Nombre"><br>
+<div class="max-w-6xl mx-auto p-4 space-y-8">
+  <!-- Formulario de Registro -->
+  <div class="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md border border-gray-100">
+    <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Registro de Alumnos</h2>
+    
+    <form [formGroup]="formulario" class="space-y-4">
+      <!-- Campo Nombre -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre:</label>
+        <input 
+          type="text" 
+          formControlName="nombre" 
+          placeholder="Ingrese el nombre"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        >
+      </div>
 
-     <label class="block text-sm font-medium">Matricula: </label>
-    <input type="text"  formControlName="matricula" placeholder="Matricula"><br>
+      <!-- Campo Matrícula -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Matrícula:</label>
+        <input 
+          type="text" 
+          formControlName="matricula" 
+          placeholder="Ingrese la matrícula"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        >
+      </div>
 
-     <label class="block text-sm font-medium">Correo: </label>
-    <input type="text" formControlName="correo" placeholder="Correo"><br>
+      <!-- Campo Correo -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Correo:</label>
+        <input 
+          type="email" 
+          formControlName="correo" 
+          placeholder="correo@ejemplo.com"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        >
+      </div>
 
-     <label class="block text-sm font-medium">Materia: </label>
-    <input type="text" formControlName="materia" placeholder="Materia"><br>
+      <!-- Campo Materia -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Materia:</label>
+        <input 
+          type="text" 
+          formControlName="materia" 
+          placeholder="Ingrese la materia"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+        >
+      </div>
 
-    <button type="submit" (click)="muestraAlumnos">Registrar</button>
+      <!-- Botón de Registro -->
+      <div class="pt-2">
+        <button 
+          type="submit" 
+          (click)="muestraAlumnos()"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          Registrar
+        </button>
+      </div>
     </form>
+  </div>
 
-    <h1>Lista alumno</h1>
-    <h2>Matricula: {{nuevoAlumno.matricula}}</h2>
-    <h2>Nombre: {{nuevoAlumno.nombre}}</h2>
-    <h2>Correo: {{nuevoAlumno.correo}}</h2>
-    <h2>Materia: {{nuevoAlumno.materia}}</h2>
+  <!-- Tabla de Alumnos -->
+  <div class="max-w-6xl mx-auto mt-8">
+    <h2 class="mb-4 text-2xl font-bold text-gray-900">
+      Lista de alumnos
+    </h2>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left text-gray-500">
+        <!-- Encabezado -->
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+          <tr>
+            <th scope="col" class="px-6 py-3">Matrícula</th>
+            <th scope="col" class="px-6 py-3">Nombre</th>
+            <th scope="col" class="px-6 py-3">Correo</th>
+            <th scope="col" class="px-6 py-3">Materia</th>
+            <th scope="col" class="px-6 py-3">Acciones</th>
+          </tr>
+        </thead>
+        <!-- Datos -->
+        <tbody>
+          <tr *ngFor="let alumno1 of alumnos let i = index" class="bg-white border-b border-gray-200 hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+              {{ alumno1.matricula }}
+            </td>
+            <td class="px-6 py-4">{{ alumno1.nombre }}</td>
+            <td class="px-6 py-4">{{ alumno1.correo }}</td>
+            <td class="px-6 py-4">{{ alumno1.materia }}</td>
+            <td class="px-6 py-4">
+              <div class="flex gap-2">
+                <!-- Botón Editar -->
+                <button
+                  type="button"
+                  class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+                  (click)="editarAlumnos(i)"
+                >
+                  Editar
+                </button>
+                <!-- Botón Eliminar -->
+                <button
+                  type="button"
+                  class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
+                  (click)="eliminarAlumno(i)"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mensaje cuando no existen alumnos -->
+    <div *ngIf="alumnos.length === 0" class="p-4 mt-4 text-sm text-gray-800 rounded-lg bg-gray-100" role="alert">
+      <span class="font-medium">Información:</span>
+      No hay alumnos registrados.
+    </div>
+  </div>
+
+  <!-- Sección de Vista Previa del Alumno Actual -->
+  <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 mt-6">
+    <h1 class="text-xl font-bold text-gray-800 mb-3">Lista alumno</h1>
+    <div class="space-y-1 text-gray-700">
+      <h2 class="text-sm font-medium">Matrícula: <span class="font-normal">{{nuevoAlumno.matricula}}</span></h2>
+      <h2 class="text-sm font-medium">Nombre: <span class="font-normal">{{nuevoAlumno.nombre}}</span></h2>
+      <h2 class="text-sm font-medium">Correo: <span class="font-normal">{{nuevoAlumno.correo}}</span></h2>
+      <h2 class="text-sm font-medium">Materia: <span class="font-normal">{{nuevoAlumno.materia}}</span></h2>
+    </div>
+  </div>
 </div>

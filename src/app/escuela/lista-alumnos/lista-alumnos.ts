@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule } from "@angular/common"; //gnFor, onInit
 import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IAlumno } from "../alumnos";
 import { materialize } from "rxjs";
@@ -8,7 +8,6 @@ import { materialize } from "rxjs";
   selector: "app-lista-alumnos",
   imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: "./lista-alumnos.html",
-  styleUrl: "./lista-alumnos.css",
 })
 export class ListaAlumnos implements OnInit {
   formulario!: FormGroup;
@@ -18,29 +17,29 @@ export class ListaAlumnos implements OnInit {
   indiceEdicion: number = -1;
 
   nuevoAlumno: IAlumno = {
-    matricula: "",
-    nombre: "",
-    correo: "",
-    materia: "",
+    matricula: '',
+    nombre: '',
+    correo: '',
+    materia: '',
   };
 
   ngOnInit(): void {
     this.cargarAlumnos();
 
     this.formulario = new FormGroup({
-      matricula: new FormControl(""),
-      nombre: new FormControl(""),
-      correo: new FormControl(""),
-      materia: new FormControl(""),
+      matricula: new FormControl(''),
+      nombre: new FormControl(''),
+      correo: new FormControl(''),
+      materia: new FormControl(''),
     });
   }
 
   agregarAlumno(): void {
     if (
-      this.nuevoAlumno.matricula === "" ||
-      this.nuevoAlumno.nombre === "" ||
-      this.nuevoAlumno.correo === "" ||
-      this.nuevoAlumno.materia === ""
+      this.nuevoAlumno.matricula === '' ||
+      this.nuevoAlumno.nombre === '' ||
+      this.nuevoAlumno.correo === '' ||
+      this.nuevoAlumno.materia === ''
     ) {
       alert("Todos los campos son obligatorios");
       return;
@@ -48,10 +47,10 @@ export class ListaAlumnos implements OnInit {
 
     if (this.indiceEdicion !== -1) {
       this.alumnos[this.indiceEdicion] = {
-        ...this.nuevoAlumno,
-      };
+        ...this.nuevoAlumno
+      }
     } else {
-      this.alumnos.push({ ...this.nuevoAlumno });
+      this.alumnos.push({ ...this.nuevoAlumno }); //sprit ... sirve para que las propiedades del objeto las suba todas
     }
 
     localStorage.setItem("alumnos", JSON.stringify(this.alumnos));
@@ -69,6 +68,7 @@ export class ListaAlumnos implements OnInit {
   }
 
   cargarAlumnos(): void {
+
     const datos = localStorage.getItem("alumnos");
 
     if (datos) {
@@ -76,13 +76,12 @@ export class ListaAlumnos implements OnInit {
     }
   }
 
-  editarAlumnos(index: number): void {
+  editarAlumnos(index:number): void {
     this.nuevoAlumno = {
-      ...this.alumnos[index],
-    };
+      ...this.alumnos[index]
+    }
 
     const alumno = this.alumnos[index];
-
     this.formulario.patchValue({
       matricula: alumno.matricula,
       nombre: alumno.nombre,
@@ -95,17 +94,22 @@ export class ListaAlumnos implements OnInit {
 
   eliminarAlumno(index: number): void {
     this.alumnos.splice(index, 1);
-
     localStorage.setItem("alumnos", JSON.stringify(this.alumnos));
   }
 
   limpiarCampos(): void {
     this.nuevoAlumno = {
-      matricula: "",
-      nombre: "",
-      correo: "",
-      materia: "",
-    };
+      matricula: '',
+      nombre: '',
+      correo: '',
+      materia: '',
+    }
+    this.formulario.patchValue({
+      matricula: this.nuevoAlumno.matricula,
+      nombre: this.nuevoAlumno.nombre,
+      correo: this.nuevoAlumno.correo,
+      materia: this.nuevoAlumno.materia
+    })
 
     this.indiceEdicion = -1;
   }
